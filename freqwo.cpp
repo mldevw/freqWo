@@ -17,7 +17,7 @@ void  parseFile(const char* filename);
 void  outputResults(const char* filename, const char* columnsep);
 void  foundWord(std::string wrd, std::list<word> *wordlist);
 
-char leaveOutChars[]{'.',',','!','?'};
+char leaveOutChars[]{'.',',','!','?','-','[',']','{','}',';',':','$','\\','/','"','^','_',')','('};
 std::list<word> words;
 
 int main(int argc, char **argv)
@@ -78,7 +78,7 @@ void parseFile(const char* filename)
 
       // word to lower case
       for (char &c:thisWord) c=std::tolower(c);
-      foundWord(thisWord,&words);
+      if (thisWord.length())foundWord(thisWord,&words);
   }
 
   f.close();
